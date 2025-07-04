@@ -28,18 +28,18 @@
     }
 
     .avatar-container img {
-     height: 210px;
-     width: auto;
-     border-radius: 4px;
-     border: 2px solid #ccc;
-     display: block;
-     object-fit: contain;
-   }
+      height: 210px;
+      width: auto;
+      border-radius: 4px;
+      border: 2px solid #ccc;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
 
     .avatar-container img:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-   }
+      transform: scale(1.02);
+    }
 
     .intro {
       flex: 1;
@@ -190,6 +190,19 @@
     window.onload = function() {
       document.getElementsByClassName("tab-button")[0].click();
     };
+
+    function showPhone() {
+      const phone = document.getElementById("phone-number");
+      const trigger = document.getElementById("show-phone");
+
+      phone.style.display = "inline";
+      trigger.style.display = "none";
+
+      setTimeout(() => {
+        phone.style.display = "none";
+        trigger.style.display = "inline";
+      }, 30000);
+    }
   </script>
 </head>
 <body>
@@ -202,7 +215,7 @@
       <h1>Dũng Trần – GIS & Remote Sensing Analyst</h1>
       <p class="info">
         I am a GIS & Remote Sensing Analyst with over 5 years of experience in geospatial analysis, satellite data processing, and digital mapping.
-        My expertise spans <b>Google Earth Engine, QGIS, ArcGIS, Python</b>, and <b>data visualization</b> for <b>urban planning, agriculture, and climate resilience.</b>
+        My expertise spans <b>Google Earth Engine, QGIS, ArcGIS, Python</b>, and <b>data visualization</b> for <b>urban planning, precision agriculture, land use monitoring, and environmental management.</b>
       </p>
       <p class="education">
         🎓 <strong>Education:</strong><br>
@@ -210,8 +223,12 @@
         • BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science
       </p>
       <p class="contact">
-        📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 📞 +84 372 251 694 <br>
-        🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank" style="color: #003366; text-decoration: underline;">LinkedIn</a>
+        📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 
+        <span id="show-phone" style="cursor: pointer; color: #0077cc; text-decoration: underline;" onclick="showPhone()">
+          📞 Click to show phone number (Zalo)
+        </span>
+        <span id="phone-number" style="display: none;"> | +84 372 251 694</span>
+        <br>🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank" style="color: #003366; text-decoration: underline;">LinkedIn</a>
       </p>
     </div>
   </header>
@@ -238,65 +255,4 @@
     <h2>Geospatial Projects</h2>
     <div class="map-grid">
       <div class="map-item">
-        <img src="vinhphuc_danso.jpg" alt="Vinh Phuc Population">
-        <strong>Population Density – Vinh Phuc</strong>
-      </div>
-      <div class="map-item">
-        <img src="vinhphucdiahinh.jpg" alt="Vinh Phuc Elevation">
-        <strong>Elevation Map – Vinh Phuc</strong>
-      </div>
-      <div class="map-item">
-        <img src="Gtbinhchuan.jpg" alt="Transportation Binh Chuan">
-        <strong>Transportation Map – Binh Chuan</strong>
-      </div>
-      <div class="map-item">
-        <img src="tonghopbinhchuan.jpg" alt="Summary Map Binh Chuan">
-        <strong>Integrated Map – Binh Chuan</strong>
-      </div>
-      <div class="map-item">
-        <img src="45_2021_2040.jpg" alt="Projected Distribution 2021–2040">
-        <strong>Projected Distribution – Lomatodactylus (2021–2040)</strong>
-      </div>
-      <div class="map-item">
-        <img src="45_2041_2060.jpg" alt="Projected Distribution 2041–2060">
-        <strong>Projected Distribution – Lomatodactylus (2041–2060)</strong>
-      </div>
-      <div class="map-item">
-        <img src="taynguyemap.jpg" alt="Central Highlands Map">
-        <strong>Central Highlands</strong>
-      </div>
-      <div class="map-item">
-        <img src="TAYNGUYEN.gif" alt="Drought Animation in Tay Nguyen">
-        <strong>TVDI Drought Index – Central Highlands</strong>
-      </div>
-    </div>
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
-  </div>
-
-  <div id="webapp" class="tab-content">
-    <h2>Web Application Demo</h2>
-    <div class="map-item" style="grid-column: span 2;">
-      <img src="appdemo.png" alt="GEE App Demo">
-      <p style="margin-top: 10px;">
-        🌍 Try my interactive GEE application for coastline extraction:<br>
-        <a href="https://ee-dunglovegeee.projects.earthengine.app/view/coastlineextractorlandsat" 
-           target="_blank" 
-           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #2c3e50; color: white; border-radius: 5px; text-decoration: none;">
-           🚀 Open App
-        </a>
-      </p>
-    </div>
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
-  </div>
-
-  <div id="certificates" class="tab-content">
-    <h2>Certificates</h2>
-    <embed src="chungchi.pdf#toolbar=0&navpanes=0" type="application/pdf" width="100%" height="800px">
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
-  </div>
-
-  <footer>
-    &copy; 2025 Dũng Trần | Built with HTML & CSS
-  </footer>
-</body>
-</html>
+        <img src="vinhphuc_danso.jpg" alt="Vinh_
