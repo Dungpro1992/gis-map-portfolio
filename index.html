@@ -34,11 +34,11 @@
       border: 2px solid #ccc;
       display: block;
       object-fit: contain;
-      transition: transform 0.3s ease;
     }
 
     .avatar-container img:hover {
       transform: scale(1.02);
+      transition: transform 0.3s ease;
     }
 
     .intro {
@@ -188,71 +188,4 @@
     }
 
     window.onload = function() {
-      document.getElementsByClassName("tab-button")[0].click();
-    };
-
-    function showPhone() {
-      const phone = document.getElementById("phone-number");
-      const trigger = document.getElementById("show-phone");
-
-      phone.style.display = "inline";
-      trigger.style.display = "none";
-
-      setTimeout(() => {
-        phone.style.display = "none";
-        trigger.style.display = "inline";
-      }, 30000);
-    }
-  </script>
-</head>
-<body>
-  <a name="top"></a>
-  <header>
-    <div class="avatar-container">
-      <img src="avatar.jpg" alt="Avatar">
-    </div>
-    <div class="intro">
-      <h1>Dũng Trần – GIS & Remote Sensing Analyst</h1>
-      <p class="info">
-        I am a GIS & Remote Sensing Analyst with over 5 years of experience in geospatial analysis, satellite data processing, and digital mapping.
-        My expertise spans <b>Google Earth Engine, QGIS, ArcGIS, Python</b>, and <b>data visualization</b> for <b>urban planning, precision agriculture, land use monitoring, and environmental management.</b>
-      </p>
-      <p class="education">
-        🎓 <strong>Education:</strong><br>
-        • MSc in Cartography, Remote Sensing & GIS (2021–2025) – HCMC University of Technology<br>
-        • BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science
-      </p>
-      <p class="contact">
-        📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 
-        <span id="show-phone" style="cursor: pointer; color: #0077cc; text-decoration: underline;" onclick="showPhone()">
-          📞 Click to show phone number (Zalo)
-        </span>
-        <span id="phone-number" style="display: none;"> | +84 372 251 694</span>
-        <br>🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank" style="color: #003366; text-decoration: underline;">LinkedIn</a>
-      </p>
-    </div>
-  </header>
-
-  <div class="tabs">
-    <button class="tab-button" onclick="openTab(event, 'experience')">Work Experience</button>
-    <button class="tab-button" onclick="openTab(event, 'projects')">Projects</button>
-    <button class="tab-button" onclick="openTab(event, 'webapp')">GEE Web App</button>
-    <button class="tab-button" onclick="openTab(event, 'certificates')">Certificates</button>
-  </div>
-
-  <div id="experience" class="tab-content">
-    <h2>Work Experience</h2>
-    <div class="work-experience">
-      <ul>
-        <li><strong>Ho Chi Minh City Space Technology Application Center – Vietnam Space Center</strong> (May 2023 – Present)</li>
-        <li><strong>Southern Marine Environmental & Resources Planning Center – Vietnam Administration of Seas and Islands</strong> (Dec 2017 – Mar 2023)</li>
-      </ul>
-    </div>
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
-  </div>
-
-  <div id="projects" class="tab-content">
-    <h2>Geospatial Projects</h2>
-    <div class="map-grid">
-      <div class="map-item">
-        <img src="vinhphuc_danso.jpg" alt="Vinh_
+      document.getElementsByClassName(
