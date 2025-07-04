@@ -13,11 +13,21 @@
     }
 
     header {
+      display: flex;
+      align-items: center;
       background-color: #f0f8ff;
       color: #003366;
       padding: 25px 20px;
       border-radius: 8px;
       margin-bottom: 30px;
+    }
+
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 2px solid #ccc;
     }
 
     h1 {
@@ -127,6 +137,15 @@
     }
 
     @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header img {
+        margin-bottom: 15px;
+      }
+
       .map-grid {
         grid-template-columns: 1fr;
       }
@@ -155,20 +174,23 @@
 <body>
   <a name="top"></a>
   <header>
-    <h1>Dũng Trần – GIS & Remote Sensing Analyst</h1>
-    <p class="info">
-      I am a GIS & Remote Sensing Analyst with over 5 years of experience in geospatial analysis, satellite data processing, and digital mapping.
-      My expertise spans <b>Google Earth Engine, QGIS, ArcGIS, Python</b>, and <b>data visualization</b> for <b>urban planning, agriculture, and climate resilience.</b>
-    </p>
-    <p class="education">
-      🎓 <strong>Education:</strong><br>
-      • MSc in Cartography, Remote Sensing & GIS (2021–2025) – HCMC University of Technology<br>
-      • BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science
-    </p>
-    <p class="contact">
-      📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 📞 +84 372 251 694 <br>
-      🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank" style="color: #003366; text-decoration: underline;">LinkedIn</a>
-    </p>
+    <img src="avatar.jpg" alt="Avatar">
+    <div>
+      <h1>Dũng Trần – GIS & Remote Sensing Analyst</h1>
+      <p class="info">
+        I am a GIS & Remote Sensing Analyst with over 5 years of experience in geospatial analysis, satellite data processing, and digital mapping.
+        My expertise spans <b>Google Earth Engine, QGIS, ArcGIS, Python</b>, and <b>data visualization</b> for <b>urban planning, agriculture, and climate resilience.</b>
+      </p>
+      <p class="education">
+        🎓 <strong>Education:</strong><br>
+        • MSc in Cartography, Remote Sensing & GIS (2021–2025) – HCMC University of Technology<br>
+        • BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science
+      </p>
+      <p class="contact">
+        📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 📞 +84 372 251 694 <br>
+        🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank" style="color: #003366; text-decoration: underline;">LinkedIn</a>
+      </p>
+    </div>
   </header>
 
   <div class="tabs">
