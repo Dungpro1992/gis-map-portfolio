@@ -30,12 +30,16 @@
     .avatar-container img {
      height: 210px;
      width: auto;
-     border-radius: 5px;
+     border-radius: 4px;
      border: 2px solid #ccc;
      display: block;
      object-fit: contain;
    }
 
+    .avatar-container img:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+   }
 
     .intro {
       flex: 1;
