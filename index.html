@@ -108,27 +108,6 @@
       transform: scale(1.03);
     }
 
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .cert-item {
-      background-color: white;
-      border-radius: 8px;
-      padding: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .cert-item img {
-      width: 100%;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
     footer {
       margin-top: 40px;
       font-size: 0.9em;
@@ -137,7 +116,7 @@
     }
 
     @media (max-width: 600px) {
-      .map-grid, .cert-grid {
+      .map-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -163,6 +142,7 @@
   </script>
 </head>
 <body>
+
   <header>
     <h1>Dũng Trần – GIS & Remote Sensing Analyst</h1>
     <p class="info">
@@ -181,8 +161,9 @@
 
   <div class="tabs">
     <button class="tab-button" onclick="openTab(event, 'experience')">Work Experience</button>
-    <button class="tab-button" onclick="openTab(event, 'projects')">Projects & App</button>
-    <button class="tab-button" onclick="openTab(event, 'certs')">Certificates</button>
+    <button class="tab-button" onclick="openTab(event, 'projects')">Projects</button>
+    <button class="tab-button" onclick="openTab(event, 'webapp')">GEE Web App</button>
+    <button class="tab-button" onclick="openTab(event, 'certificates')">Certificates</button>
   </div>
 
   <div id="experience" class="tab-content">
@@ -231,6 +212,9 @@
         <strong>NDVI Animation – Central Highlands</strong>
       </div>
     </div>
+  </div>
+
+  <div id="webapp" class="tab-content">
     <h2>Web Application Demo</h2>
     <div class="map-item" style="grid-column: span 2;">
       <img src="appdemo.png" alt="GEE App Demo">
@@ -245,22 +229,14 @@
     </div>
   </div>
 
-  <div id="certs" class="tab-content">
+  <div id="certificates" class="tab-content">
     <h2>Certificates</h2>
-    <div class="cert-grid">
-      <div class="cert-item">
-        <img src="cert-toeic.png" alt="TOEIC Certificate">
-        <strong>TOEIC 725 – ETS (2022)</strong>
-      </div>
-      <div class="cert-item">
-        <img src="cert-vseo-sar.png" alt="VSEO SAR Certificate">
-        <strong>SAR Remote Sensing – VSEO-3 (2023)</strong>
-      </div>
-    </div>
+    <embed src="chungchi.pdf#toolbar=0&navpanes=0" type="application/pdf" width="100%" height="800px">
   </div>
 
   <footer>
     &copy; 2025 Dũng Trần | Built with HTML & CSS
   </footer>
+
 </body>
 </html>
