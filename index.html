@@ -195,6 +195,84 @@
     </div>
   </div>
 
-  <!-- rest of content remains unchanged -->
+  <div id="projects" class="tab-content">
+    <h2>Map Projects</h2>
+    <div class="map-grid">
+      <div class="map-item">
+        <img src="vinhphuc_danso.jpg" alt="Vinh Phuc Population" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="vinhphucdiahinh.jpg" alt="Vinh Phuc Topography" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="taynguyemap.jpg" alt="Tay Nguyen Map" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="TAYNGUYEN.gif" alt="Tay Nguyen NDVI GIF" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="tonghopbinhchuan.jpg" alt="Binh Chuan Summary" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="Gtbinhchuan.jpg" alt="Standardized Map" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="45_2021_2040.jpg" alt="Scenario 2021-2040" onclick="openFullscreen(this)">
+      </div>
+      <div class="map-item">
+        <img src="45_2041_2060.jpg" alt="Scenario 2041-2060" onclick="openFullscreen(this)">
+      </div>
+    </div>
+    <div style="text-align:right; margin-top:30px;">
+      <a href="#top" class="back-to-top">⬆️ Back to Top</a>
+    </div>
+  </div>
+
+  <div id="certs" class="tab-content">
+    <h2>Certificates</h2>
+    <iframe src="chungchi.pdf#toolbar=0" title="Certificate PDF" allowfullscreen></iframe>
+    <p style="text-align:center; font-size: 0.9em; color: #666;">*View only – Download is disabled*</p>
+    <div style="text-align:right; margin-top:30px;">
+      <a href="#top" class="back-to-top">⬆️ Back to Top</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Dung Tran | GIS & Remote Sensing Portfolio<br>
+    <span id="view-counter"></span>
+  </footer>
+
+  <script>
+    function openTab(evt, tabName) {
+      const tabs = document.querySelectorAll(".tab-content");
+      const buttons = document.querySelectorAll(".tab-button");
+      tabs.forEach(tab => tab.classList.remove("active"));
+      buttons.forEach(btn => btn.classList.remove("active"));
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+
+    function openFullscreen(img) {
+      const fullImg = document.createElement("img");
+      fullImg.src = img.src;
+      fullImg.style.position = "fixed";
+      fullImg.style.top = "0";
+      fullImg.style.left = "0";
+      fullImg.style.width = "100%";
+      fullImg.style.height = "100%";
+      fullImg.style.objectFit = "contain";
+      fullImg.style.background = "rgba(0,0,0,0.9)";
+      fullImg.style.zIndex = "9999";
+      fullImg.style.cursor = "zoom-out";
+      fullImg.onclick = () => fullImg.remove();
+      document.body.appendChild(fullImg);
+    }
+
+    fetch('https://api.countapi.xyz/hit/gis-portfolio.trandung/view')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('view-counter').textContent = `👁️ Views: ${data.value}`;
+      });
+  </script>
 </body>
 </html>
