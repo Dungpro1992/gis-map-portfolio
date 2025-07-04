@@ -199,11 +199,14 @@
 
     function revealPhone() {
       const phoneLink = document.getElementById("revealPhone");
+      phoneLink.innerHTML = "Revealing in 30 seconds...";
+      phoneLink.style.cursor = "wait";
+      phoneLink.style.textDecoration = "none";
+      phoneLink.onclick = null;
+
       setTimeout(() => {
         phoneLink.innerHTML = "+84 372 251 694";
         phoneLink.style.cursor = "default";
-        phoneLink.style.textDecoration = "none";
-        phoneLink.onclick = null;
       }, 30000);
     }
   </script>
@@ -217,20 +220,17 @@
     <div class="intro">
       <h1>Dũng Trần – GIS & Remote Sensing Analyst</h1>
       <p class="info">
-        As a GIS & Remote Sensing Analyst with over 5 years of experience, I specialize in geospatial analysis, satellite data processing, and digital mapping.  
+        As a GIS & Remote Sensing Analyst with over 5 years of experience, I specialize in geospatial analysis, satellite data processing, and digital mapping.
         My expertise spans <b>Google Earth Engine, QGIS, ArcGIS, Python</b>, and <b>data visualization</b> for <b>urban planning, precision agriculture, land use monitoring, and environmental management</b>.
       </p>
-      <p class="info">
-        Lifelong learning is my core principle — I continuously seek to grow technically and professionally through practice, collaboration, and curiosity.
-      </p>
-      <p class="education">
+          <p class="education">
         🎓 <strong>Education:</strong><br>
         • MSc in Cartography, Remote Sensing & GIS (2021–2025) – HCMC University of Technology<br>
         • BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science
       </p>
       <p class="contact">
         📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 📞 
-        <span id="revealPhone" class="phone-hidden" onclick="revealPhone()">Click to reveal phone</span> <br>
+        <span id="revealPhone" class="phone-hidden" onclick="revealPhone()">Click to reveal phone</span><br>
         🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank" style="color: #003366; text-decoration: underline;">LinkedIn</a>
       </p>
     </div>
