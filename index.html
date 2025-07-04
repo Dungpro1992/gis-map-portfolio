@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GIS Portfolio - Dũng Trần</title>
+  <title>GIS Portfolio - Dung Tran</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -89,77 +89,99 @@
       color: #555;
       text-align: center;
     }
+
+    a.app-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 
-  <h1>🌍 GIS & Remote Sensing Portfolio – Dũng Trần</h1>
+  <h1>🌍 GIS & Remote Sensing Portfolio – Dung Tran</h1>
 
   <!-- Tabs -->
   <div class="tabs">
-    <button class="tab-button active" onclick="openTab(event, 'info')">Thông tin</button>
-    <button class="tab-button" onclick="openTab(event, 'experience')">Kinh nghiệm</button>
-    <button class="tab-button" onclick="openTab(event, 'projects')">Sản phẩm</button>
-    <button class="tab-button" onclick="openTab(event, 'certs')">Chứng chỉ</button>
+    <button class="tab-button active" onclick="openTab(event, 'info')">Profile</button>
+    <button class="tab-button" onclick="openTab(event, 'experience')">Experience</button>
+    <button class="tab-button" onclick="openTab(event, 'projects')">Projects</button>
+    <button class="tab-button" onclick="openTab(event, 'certs')">Certificates</button>
   </div>
 
-  <!-- Thông tin -->
+  <!-- Profile -->
   <div id="info" class="tab-content active">
-    <h2>Thông tin cá nhân</h2>
-    <p>Tôi là một chuyên gia GIS & Viễn thám với hơn 5 năm kinh nghiệm trong phân tích không gian, xử lý ảnh vệ tinh và xây dựng bản đồ số.</p>
+    <h2>Profile</h2>
+    <p>I am a GIS & Remote Sensing Analyst with over 5 years of experience in spatial data analysis, satellite image processing, and digital cartography.</p>
     <ul>
-      <li>🎓 MSc in GIS & Remote Sensing – HCMUT (2021–2025)</li>
-      <li>🎓 BSc in Oceanography – HCMUS (2011–2015)</li>
+      <li>🎓 MSc in Cartography, Remote Sensing & GIS – HCMC University of Technology (2021–2025)</li>
+      <li>🎓 BSc in Oceanography, Meteorology & Hydrology – HCMC University of Science (2011–2015)</li>
       <li>📧 Email: tvdung1292@gmail.com</li>
-      <li>📍 Địa chỉ: TP. Hồ Chí Minh</li>
+      <li>📍 Location: Ho Chi Minh City, Vietnam</li>
       <li>🔗 <a href="https://linkedin.com/in/trần-dũng-00264626b" target="_blank">LinkedIn</a></li>
     </ul>
   </div>
 
-  <!-- Kinh nghiệm -->
+  <!-- Experience -->
   <div id="experience" class="tab-content">
-    <h2>Kinh nghiệm làm việc</h2>
+    <h2>Work Experience</h2>
     <ul>
-      <li><strong>VNSC – Trung tâm Ứng dụng Công nghệ Vũ trụ TP.HCM</strong><br>05/2023 – nay</li>
-      <li><strong>Trung tâm Quy hoạch Tài nguyên & Môi trường biển phía Nam</strong><br>12/2017 – 03/2023</li>
+      <li><strong>Ho Chi Minh City Space Technology Application Center (VNSC)</strong><br>May 2023 – Present</li>
+      <li><strong>Southern Marine Environmental and Resources Planning Center</strong><br>Dec 2017 – Mar 2023</li>
     </ul>
   </div>
 
-  <!-- Dự án GIS -->
+  <!-- Projects -->
   <div id="projects" class="tab-content">
-    <h2>Các sản phẩm bản đồ</h2>
+    <h2>Map Projects</h2>
     <div class="map-grid">
       <div class="map-item">
         <img src="vinhphuc_danso.jpg" alt="Vinh Phuc Population">
-        <strong>Population Density – Vĩnh Phúc</strong>
+        <strong>Population Density – Vinh Phuc</strong>
       </div>
       <div class="map-item">
         <img src="vinhphucdiahinh.jpg" alt="Vinh Phuc Elevation">
-        <strong>Elevation Map – Vĩnh Phúc</strong>
+        <strong>Elevation Map – Vinh Phuc</strong>
       </div>
       <div class="map-item">
         <img src="Gtbinhchuan.jpg" alt="Binh Chuan Transport">
-        <strong>Transportation Map – Bình Chuẩn</strong>
+        <strong>Transportation Map – Binh Chuan</strong>
       </div>
       <div class="map-item">
         <img src="tonghopbinhchuan.jpg" alt="Binh Chuan Summary">
-        <strong>Integrated Map – Bình Chuẩn</strong>
+        <strong>Integrated Map – Binh Chuan</strong>
       </div>
       <div class="map-item">
         <img src="taynguyemap.jpg" alt="Tay Nguyen Map">
-        <strong>Drought Risk – Tây Nguyên</strong>
+        <strong>Drought Risk – Central Highlands</strong>
       </div>
       <div class="map-item">
         <img src="TAYNGUYEN.gif" alt="Drought Animation">
-        <strong>Drought Animation – Tây Nguyên</strong>
+        <strong>Drought Animation – Central Highlands</strong>
       </div>
+    </div>
+
+    <h2 style="margin-top: 40px;">🌐 Web App Demo</h2>
+    <div class="map-item">
+      <img src="appdemo.png" alt="GEE App Demo">
+      <p style="margin-top: 10px;">
+        Try my interactive GEE application for coastline extraction:
+        <br>
+        <a class="app-link" href="https://ee-dunglovegeee.projects.earthengine.app/view/coastlineextractorlandsat" target="_blank">
+          🚀 Launch App
+        </a>
+      </p>
     </div>
   </div>
 
-  <!-- Chứng chỉ -->
+  <!-- Certificates -->
   <div id="certs" class="tab-content">
-    <h2>Bằng cấp & Chứng chỉ</h2>
-    <p>📄 Bạn có thể xem các chứng chỉ (TOEIC, khóa học SAR, v.v.) tại file PDF dưới đây:</p>
+    <h2>Degrees & Certificates</h2>
+    <p>Below is a PDF file including my certificates such as TOEIC, SAR Remote Sensing workshop, etc.:</p>
     <iframe src="chungchi.pdf"></iframe>
   </div>
 
@@ -178,7 +200,7 @@
   </script>
 
   <footer>
-    &copy; 2025 Dũng Trần | Thiết kế với HTML & CSS
+    &copy; 2025 Dung Tran | Built with HTML & CSS
   </footer>
 
 </body>
