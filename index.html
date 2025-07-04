@@ -32,7 +32,7 @@
       max-width: 1000px;
       margin: auto;
       padding: 20px;
-      background-color: #e7f3f9; /* Nền xanh bạc nhẹ */
+      background-color: #e7f3f9;
     }
 
     h1 {
@@ -40,7 +40,6 @@
       color: var(--dark);
     }
 
-    /* Tabs */
     .tabs {
       display: flex;
       flex-wrap: wrap;
@@ -247,13 +246,17 @@
   <div id="certs" class="tab-content">
     <h2>Degrees & Certificates</h2>
     <p>The PDF below is view-only (download/print disabled):</p>
-    <iframe src="chungchi.pdf" sandbox="allow-same-origin"></iframe>
+    <iframe 
+      src="https://docs.google.com/gview?url=https://dungpro1992.github.io/gis-map-portfolio/chungchi.pdf&embedded=true" 
+      width="100%" 
+      height="600px" 
+      style="border:1px solid #ccc; border-radius:8px;">
+    </iframe>
     <div style="text-align:right; margin-top:30px;">
       <a href="#top" class="back-to-top">⬆️ Back to Top</a>
     </div>
   </div>
 
-  <!-- Script -->
   <script>
     function openTab(evt, id) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
