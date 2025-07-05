@@ -19,7 +19,7 @@
       color: #003366;
       padding: 25px 20px;
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .avatar-container {
@@ -47,23 +47,22 @@
 
     h1 {
       margin-bottom: 10px;
+      font-size: 1.8em;
     }
 
     h2 {
+      font-size: 1.2em;
       font-style: italic;
       color: #2c3e50;
       margin-top: 4px;
     }
-    .info {
-      text-align: justify;     /* canh đều hai bên */
-      line-height: 1.6;        /* giãn dòng cho dễ đọc */
-      max-width: 700px;        /* giới hạn chiều ngang (nếu muốn) */
-      margin: 20px auto;       /* căn giữa đoạn văn nếu có chiều rộng */
-      text-indent: 2em;        /* thụt đầu dòng */
-    }
 
-    .info, .education {
-      margin-top: 10px;
+    .info {
+      text-align: justify;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 20px auto;
+      text-indent: 2em;
     }
 
     .contact {
@@ -105,6 +104,7 @@
 
     .tab-content {
       display: none;
+      margin-top: 20px;
     }
 
     .tab-content.active {
@@ -227,15 +227,10 @@
     </div>
     <div class="intro">
       <h1>Dũng Trần</h1>
-      <h2> GIS & Remote Sensing Analyst</h2>
+      <h2>GIS & Remote Sensing Analyst</h2>
       <p class="info">
         As a GIS & Remote Sensing Analyst with over 5 years of experience, I specialize in geospatial analysis, satellite data processing, and digital mapping.
-        My expertise spans <b>Google Earth Engine, QGIS, ArcGIS </b>, and <b>data visualization</b> for <b>urban planning, precision agriculture, land use monitoring, and environmental management</b>.
-      </p>
-          <p class="education">
-        🎓 <strong>Education:</strong><br>
-        • MSc in Cartography, Remote Sensing & GIS (2021–2025) – HCMC University of Technology<br>
-        • BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science
+        My expertise spans <b>Google Earth Engine, QGIS, ArcGIS</b>, and <b>data visualization</b> for <b>urban planning, precision agriculture, land use monitoring, and environmental management</b>.
       </p>
       <p class="contact">
         📍 Ho Chi Minh City | ✉️ tvdung1292@gmail.com | 📞 
@@ -244,6 +239,10 @@
       </p>
     </div>
   </header>
+
+  <div style="text-align: center; font-style: italic; color: #444; margin-bottom: 20px;">
+    “It's never too late to learn”
+  </div>
 
   <div class="tabs">
     <button class="tab-button" onclick="openTab(event, 'experience')">Work Experience</button>
@@ -257,11 +256,18 @@
       <li><strong>Ho Chi Minh City Space Technology Application Center – Vietnam Space Center</strong> (May 2023 – Present)</li>
       <li><strong>Southern Marine Environmental & Resources Planning Center – Vietnam Administration of Seas and Islands</strong> (Dec 2017 – Mar 2023)</li>
     </ul>
+    <div style="margin-top: 20px;">
+      <p>🎓 <strong>Education:</strong></p>
+      <ul>
+        <li>• MSc in Cartography, Remote Sensing & GIS (2021–2025) – HCMC University of Technology (HCMUT)</li>
+        <li>• BSc in Oceanography, Meteorology & Hydrology (2011–2015) – HCMC University of Science (HCMUS)</li>
+      </ul>
+    </div>
     <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
   </div>
 
   <div id="projects" class="tab-content">
-      <div class="map-grid">
+    <div class="map-grid">
       <div class="map-item">
         <img src="vinhphuc_danso.jpg" alt="Vinh Phuc Population">
         <strong>Population Density – Vinh Phuc</strong>
@@ -299,7 +305,7 @@
   </div>
 
   <div id="webapp" class="tab-content">
-      <div class="map-item" style="grid-column: span 2;">
+    <div class="map-item" style="grid-column: span 2;">
       <img src="appdemo.png" alt="GEE App Demo">
       <p style="margin-top: 10px;">
         🌍 Try my interactive GEE application for coastline extraction:<br>
