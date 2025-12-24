@@ -1,250 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>GIS Map Portfolio - Dũng Trần</title>
 
 <style>
 body {
-  font-family: Arial, sans-serif;
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
 }
 
 header {
-  display: flex;
-  align-items: center;
-  background-color: #f0f8ff;
-  color: #003366;
-  padding: 25px 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #f0f8ff;
+    color: #003366;
+    padding: 25px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .avatar-container {
-  margin-right: 20px;
+    flex-shrink: 0;
+    margin-right: 20px;
 }
 
 .avatar-container img {
-  height: 240px;
-  border-radius: 4px;
-  border: 2px solid #ccc;
+    height: 240px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
 }
 
-.intro h1 {
-  margin-bottom: 10px;
+.intro {
+    flex: 1;
 }
+
+h1 { margin-bottom: 8px; }
 
 .info {
-  text-align: justify;
-  line-height: 1.6;
+    text-align: justify;
+    line-height: 1.6;
 }
 
 .tabs {
-  display: flex;
-  border-bottom: 2px solid #ccc;
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-top: 10px;
 }
 
 .tab-button {
-  padding: 12px 20px;
-  border: none;
-  background: #e6e6e6;
-  cursor: pointer;
-  font-weight: bold;
-  margin-right: 5px;
+    padding: 12px 20px;
+    border: none;
+    background: #e6e6e6;
+    cursor: pointer;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 .tab-button.active {
-  background: white;
-  color: #0077cc;
-  border-bottom: 2px solid white;
+    background: white;
+    color: #0077cc;
+    border-bottom: 2px solid white;
 }
 
 .tab-content {
-  display: none;
-  margin-top: 20px;
+    display: none;
+    margin-top: 20px;
+}
+
+.tab-content.active {
+    display: block;
 }
 
 .section-title {
-  font-size: 1.1em;
-  font-weight: bold;
-  margin: 20px 0 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px;
 }
 
-.work-experience {
-  list-style: none;
-  padding-left: 0;
+/* ===== LISTS ===== */
+.bullet-list {
+    list-style-type: disc;
+    padding-left: 20px;
 }
 
-.work-experience li {
-  margin-bottom: 10px;
+.bullet-list li {
+    margin-bottom: 10px;
+    line-height: 1.5;
 }
 
-/* PUBLICATIONS */
-.publication-item {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.journal-logo {
-  width: 55px;
-  object-fit: contain;
-}
-
+/* ===== MAP GRID ===== */
 .map-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .map-item {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .map-item img {
-  width: 100%;
-  border-radius: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
 }
 
+/* ===== PUBLICATIONS ===== */
+.publications li {
+    margin-bottom: 15px;
+}
+
+/* ===== FOOTER ===== */
 .back-to-top {
-  text-align: right;
-  margin-top: 20px;
+    margin-top: 25px;
+    text-align: right;
+}
+
+.back-to-top a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: bold;
 }
 
 footer {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 0.9em;
-  color: #555;
+    margin-top: 40px;
+    text-align: center;
+    color: #555;
 }
 
 @media (max-width: 600px) {
-  header {
-    flex-direction: column;
-  }
-  .map-grid {
-    grid-template-columns: 1fr;
-  }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .avatar-container img {
+        width: 100%;
+        height: auto;
+    }
+    .map-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 
 <script>
 function openTab(evt, tabName) {
-  const contents = document.getElementsByClassName("tab-content");
-  for (let c of contents) c.style.display = "none";
+    const contents = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+    }
 
-  const buttons = document.getElementsByClassName("tab-button");
-  for (let b of buttons) b.classList.remove("active");
+    const buttons = document.getElementsByClassName("tab-button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
 
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.classList.add("active");
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
 }
 
-window.onload = () => document.querySelector(".tab-button").click();
+window.onload = function () {
+    document.getElementsByClassName("tab-button")[0].click();
+};
 </script>
 </head>
 
 <body>
-<a id="top"></a>
+<a name="top"></a>
 
 <header>
-  <div class="avatar-container">
-    <img src="avatar.jpg" alt="Avatar">
-  </div>
-  <div class="intro">
-    <h1>Dũng Trần</h1>
-    <p class="info">
-      <b>GIS & Remote Sensing Analyst</b> specializing in Google Earth Engine,
-      satellite data processing, digital mapping, and spatial analysis for
-      urban planning, agriculture, and environmental monitoring.
-    </p>
-  </div>
+    <div class="avatar-container">
+        <img src="avatar.jpg" alt="Avatar">
+    </div>
+    <div class="intro">
+        <h1>Dũng Trần</h1>
+        <p class="info">
+            <b>GIS & Remote Sensing Analyst</b> specializing in geospatial analysis,
+            satellite data processing, Google Earth Engine, QGIS, ArcGIS,
+            urban planning, agriculture, and environmental monitoring.
+        </p>
+    </div>
 </header>
 
-<div style="text-align:center;font-style:italic;">
-  “It's never too late to learn”
+<div style="text-align:center;font-style:italic;margin-bottom:20px;">
+    “It's never too late to learn”
 </div>
 
+<!-- ===== TABS ===== -->
 <div class="tabs">
-  <button class="tab-button" onclick="openTab(event,'experience')">📘 Experience & Education</button>
-  <button class="tab-button" onclick="openTab(event,'products')">Sample Products</button>
-  <button class="tab-button" onclick="openTab(event,'webapp')">GEE Web App</button>
-  <button class="tab-button" onclick="openTab(event,'certificates')">Certificates</button>
+    <button class="tab-button" onclick="openTab(event,'experience')">📘 Experience & Education</button>
+    <button class="tab-button" onclick="openTab(event,'publications')">📄 Publications</button>
+    <button class="tab-button" onclick="openTab(event,'products')">🗺️ Products</button>
+    <button class="tab-button" onclick="openTab(event,'webapp')">🌍 GEE Web App</button>
+    <button class="tab-button" onclick="openTab(event,'certificates')">📜 Certificates</button>
 </div>
 
-<!-- TAB 1 -->
+<!-- ===== EXPERIENCE ===== -->
 <div id="experience" class="tab-content">
+    <div class="section-title">🧭 Work Experience</div>
+    <ul class="bullet-list">
+        <li>Office of Science and Technology – Dong Nai Technology University (Nov 2025 – Present)</li>
+        <li>HCMC Space Technology Application Center – Vietnam Space Center (May 2023 – Nov 2025)</li>
+        <li>Southern Marine Environmental & Resources Planning Center (Dec 2017 – Mar 2023)</li>
+    </ul>
 
-  <div class="section-title">🧭 Work Experience</div>
-  <ul class="work-experience">
-    <li>Office of Science and Technology – Dong Nai Technology University (Nov 2025 – Present)</li>
-    <li>HCMC Space Technology Application Center – Vietnam Space Center (May 2023 – Nov 2025)</li>
-    <li>Southern Marine Environmental & Resources Planning Center (Dec 2017 – Mar 2023)</li>
-  </ul>
+    <div class="section-title">🎓 Education</div>
+    <ul class="bullet-list">
+        <li>MSc in Cartography, Remote Sensing & GIS – HCMUT (2021–2025)</li>
+        <li>BSc in Oceanography, Meteorology & Hydrology – HCMUS (2011–2015)</li>
+    </ul>
 
-  <div class="section-title">🎓 Education</div>
-  <ul class="work-experience">
-    <li>MSc Cartography, Remote Sensing & GIS – HCMUT (2021–2025)</li>
-    <li>BSc Oceanography, Meteorology & Hydrology – HCMUS (2011–2015)</li>
-  </ul>
-
-  <div class="section-title">📄 Publications</div>
-  <ul class="work-experience">
-
-    <li class="publication-item">
-      <img src="assets/logos/ijg_logo.png" class="journal-logo">
-      <div>
-        <em>Using Landsat Satellite Data to Explore Drought Index during the Dry Season Period
-        1990–2024 in Thu Duc City of Ho Chi Minh City, Vietnam</em><br>
-        <strong>International Journal of Geoinformatics</strong>, Vol.21(3), 2025.<br>
-        <a href="https://doi.org/10.52939/ijg.v21i3.4003" target="_blank">DOI link</a>
-      </div>
-    </li>
-
-    <li class="publication-item">
-      <img src="assets/logos/gisideas_logo.png" class="journal-logo">
-      <div>
-        <em>Remote Sensing Application Using Google Earth Engine to Assess Crop Burn Areas</em><br>
-        <strong>GIS-IDEAS 2023 Conference Proceedings</strong>
-      </div>
-    </li>
-
-  </ul>
-
-  <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
 </div>
 
-<!-- TAB 2 -->
+<!-- ===== PUBLICATIONS ===== -->
+<div id="publications" class="tab-content">
+    <ul class="bullet-list publications">
+        <li>
+            <em>Using Landsat Satellite Data to Explore Drought Index during the Dry Season Period
+            1990–2024 in Thu Duc City of Ho Chi Minh City, Vietnam</em><br>
+            <strong>International Journal of Geoinformatics</strong>, Vol.21(3), 2025.<br>
+            <a href="https://doi.org/10.52939/ijg.v21i3.4003" target="_blank">
+                DOI: 10.52939/ijg.v21i3.4003
+            </a>
+        </li>
+
+        <li>
+            <em>Remote Sensing Application Using Google Earth Engine to Assess Crop Burn Areas</em><br>
+            <strong>GIS-IDEAS 2023 Conference Proceedings</strong>
+        </li>
+    </ul>
+
+    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
 <div id="products" class="tab-content">
-  <div class="map-grid">
-    <div class="map-item"><img src="vinhphuc_danso.jpg"><b>Population Density – Vinh Phuc</b></div>
-    <div class="map-item"><img src="vinhphucdiahinh.jpg"><b>Elevation – Vinh Phuc</b></div>
-  </div>
+    <div class="map-grid">
+
+        <div class="map-item"><img src="vinhphuc_danso.jpg"><strong>Population Density – Vinh Phuc</strong></div>
+        <div class="map-item"><img src="vinhphucdiahinh.jpg"><strong>Elevation – Vinh Phuc</strong></div>
+        <div class="map-item"><img src="Gtbinhchuan.jpg"><strong>Transportation – Binh Chuan</strong></div>
+        <div class="map-item"><img src="tonghopbinhchuan.jpg"><strong>Integrated Map – Binh Chuan</strong></div>
+        <div class="map-item"><img src="45_2021_2040.jpg"><strong>Species Distribution 2021–2040</strong></div>
+        <div class="map-item"><img src="45_2041_2060.jpg"><strong>Species Distribution 2041–2060</strong></div>
+        <div class="map-item"><img src="taynguyemap.jpg"><strong>Central Highlands Map</strong></div>
+        <div class="map-item"><img src="TAYNGUYEN.gif"><strong>TVDI Drought – Central Highlands</strong></div>
+        <div class="map-item"><img src="Srilanka_4.png"><strong>Travel Map – Sri Lanka (1)</strong></div>
+        <div class="map-item"><img src="Srilanka_11.png"><strong>Travel Map – Sri Lanka (2)</strong></div>
+        <div class="map-item"><img src="pm25_9h.png"><strong>PM2.5 – Oregon 09h</strong></div>
+        <div class="map-item"><img src="pm25_21h.png"><strong>PM2.5 – Oregon 21h</strong></div>
+
+    </div>
+
+    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
 </div>
 
-<!-- TAB 3 -->
+<!-- ===== WEB APP ===== -->
 <div id="webapp" class="tab-content">
-  <p>
-    🌍 Interactive GEE App:
-    <a href="https://ee-dunglovegeee.projects.earthengine.app/view/coastlineextractorlandsat" target="_blank">
-      Open App
-    </a>
-  </p>
+    <div class="map-item">
+        <img src="appdemo.png">
+        <p>
+            <a href="https://ee-dunglovegeee.projects.earthengine.app/view/coastlineextractorlandsat"
+               target="_blank">🚀 Open GEE App</a>
+        </p>
+    </div>
+    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
 </div>
 
-<!-- TAB 4 -->
+<!-- ===== CERTIFICATES ===== -->
 <div id="certificates" class="tab-content">
-  <iframe src="chungchi.pdf" width="100%" height="800"></iframe>
+    <iframe src="chungchi.pdf" width="100%" height="800px"></iframe>
+    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
 </div>
 
 <footer>
-  &copy; 2025 Dũng Trần | GIS Portfolio
+    © 2025 Dũng Trần | GIS Portfolio
 </footer>
 
 </body>
