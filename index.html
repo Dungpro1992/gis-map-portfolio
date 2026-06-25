@@ -286,8 +286,15 @@ window.onload = function () {
 </div>
 
 <footer>
-    © 2025 Dũng Trần | GIS Portfolio
+    © <span id="current-year"></span> Dũng Trần | GIS Portfolio
 </footer>
+
+<script>
+    window.onload = function () {
+        document.getElementsByClassName("tab-button")[0].click();
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+    };
+</script>
 
 </body>
 </html>
