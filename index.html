@@ -2,75 +2,133 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GIS Map Portfolio - Dũng Trần</title>
 
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
+/* ===== HỆ MÀU CHUẨN GIS (Slate & Earth) ===== */
+:root {
+    --primary-dark: #2c3e50; /* Xám than (giống giao diện QGIS/ArcGIS Pro) */
+    --accent-green: #27ae60; /* Xanh bản đồ */
+    --accent-blue: #2980b9;  /* Xanh đại dương */
+    --bg-light: #f4f7f6;
+    --text-main: #333333;
+    --border-color: #cbd5e1;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     max-width: 1000px;
     margin: auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-light);
+    color: var(--text-main);
 }
 
+/* ===== HEADER ===== */
 header {
     display: flex;
     align-items: center;
-    background-color: #f0f8ff;
-    color: #003366;
-    padding: 25px 20px;
-    border-radius: 8px;
+    background-color: var(--primary-dark);
+    color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 12px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .avatar-container {
     flex-shrink: 0;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 .avatar-container img {
-    height: 240px;
-    border-radius: 4px;
-    border: 2px solid #ccc;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Bo tròn avatar chuyên nghiệp */
+    border: 4px solid var(--accent-green);
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .intro {
     flex: 1;
 }
 
-h1 { margin-bottom: 8px; }
+h1 { 
+    margin-top: 0; 
+    margin-bottom: 12px; 
+    font-weight: 700; 
+    letter-spacing: 0.5px; 
+    font-size: 2.2em;
+}
 
 .info {
     text-align: justify;
     line-height: 1.6;
+    font-size: 0.95em;
+    color: #e2e8f0;
 }
 
+.quote-text {
+    text-align: center;
+    font-style: italic;
+    color: #64748b;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+/* ===== TABS ===== */
 .tabs {
     display: flex;
-    border-bottom: 2px solid #ccc;
-    margin-top: 10px;
+    border-bottom: 2px solid var(--border-color);
+    margin-top: 20px;
+    flex-wrap: wrap; /* Tự xuống dòng trên màn hình nhỏ */
 }
 
 .tab-button {
     padding: 12px 20px;
     border: none;
-    background: #e6e6e6;
+    background: transparent;
     cursor: pointer;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     margin-right: 5px;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 0.95em;
+    color: #64748b;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.tab-button i { 
+    margin-right: 8px; 
+    font-size: 1.1em; 
+}
+
+.tab-button:hover {
+    color: var(--primary-dark);
 }
 
 .tab-button.active {
-    background: white;
-    color: #0077cc;
-    border-bottom: 2px solid white;
+    color: var(--accent-green);
+    border-bottom: 3px solid var(--accent-green);
 }
 
+/* Hiệu ứng chuyển Tab mượt (Fade-in) */
 .tab-content {
     display: none;
-    margin-top: 20px;
+    margin-top: 30px;
+    animation: fadeEffect 0.4s ease-in-out;
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .tab-content.active {
@@ -78,20 +136,34 @@ h1 { margin-bottom: 8px; }
 }
 
 .section-title {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin: 20px 0 10px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 25px 0 15px;
+    border-left: 4px solid var(--accent-green);
+    padding-left: 10px;
 }
 
 /* ===== LISTS ===== */
 .bullet-list {
-    list-style-type: disc;
-    padding-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .bullet-list li {
-    margin-bottom: 10px;
-    line-height: 1.5;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 20px;
+}
+
+.bullet-list li::before {
+    content: "•";
+    color: var(--accent-green);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
 /* ===== MAP GRID ===== */
@@ -104,65 +176,87 @@ h1 { margin-bottom: 8px; }
 .map-item {
     background-color: white;
     border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     text-align: center;
+    transition: transform 0.2s;
+}
+
+.map-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .map-item img {
     width: 100%;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 /* ===== PUBLICATIONS ===== */
 .publications li {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+}
+.publications a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+.publications a:hover {
+    text-decoration: underline;
 }
 
 /* ===== FOOTER ===== */
 .back-to-top {
-    margin-top: 25px;
+    margin-top: 35px;
     text-align: right;
 }
 
 .back-to-top a {
     text-decoration: none;
-    color: #0077cc;
-    font-weight: bold;
+    color: var(--accent-blue);
+    font-weight: 600;
+    padding: 8px 12px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.back-to-top a:hover {
+    background: var(--border-color);
 }
 
 footer {
-    margin-top: 40px;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
     text-align: center;
-    color: #555;
+    color: #64748b;
+    font-size: 0.9em;
 }
 
-@media (max-width: 600px) {
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
     header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
     }
-    .avatar-container img {
-        width: 100%;
-        height: auto;
+    .avatar-container {
+        margin-right: 0;
+        margin-bottom: 20px;
     }
     .map-grid {
         grid-template-columns: 1fr;
     }
+    .info {
+        text-align: center;
+    }
 }
 
-/* ===== LIGHTBOX (PHÓNG TO ẢNH & CHUYỂN ẢNH) ===== */
-.map-item img {
-    cursor: pointer; 
-    transition: transform 0.2s;
-}
-
-.map-item img:hover {
-    transform: scale(1.03); 
-}
-
+/* ===== LIGHTBOX (PHÓNG TO & CHUYỂN ẢNH) ===== */
 .lightbox {
     display: none; 
     position: fixed;
@@ -172,8 +266,8 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(5px);
+    background-color: rgba(15, 23, 42, 0.95); /* Xám đen tối màu */
+    backdrop-filter: blur(4px);
 }
 
 .lightbox-content-wrapper {
@@ -192,7 +286,8 @@ footer {
     max-height: 90%;
     border-radius: 8px;
     object-fit: contain;
-    animation: fadeIn 0.3s;
+    animation: zoomIn 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 #lightbox-caption {
@@ -200,18 +295,20 @@ footer {
     font-size: 1.2em;
     margin-top: 15px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .close-btn {
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 35px;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
     z-index: 10000;
+    transition: 0.3s;
 }
 
 .prev-btn, .next-btn {
@@ -227,7 +324,7 @@ footer {
     transition: 0.3s;
     user-select: none;
     background-color: rgba(0,0,0,0.5);
-    border-radius: 5px;
+    border-radius: 8px;
     z-index: 10000;
 }
 
@@ -235,17 +332,18 @@ footer {
 .next-btn { right: 20px; }
 
 .prev-btn:hover, .next-btn:hover, .close-btn:hover {
-    color: #fff;
+    color: var(--accent-green);
     background-color: rgba(0,0,0,0.8);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0.5; transform: scale(0.95); }
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
 </style>
 
 <script>
+// --- TABS LOGIC ---
 function openTab(evt, tabName) {
     const contents = document.getElementsByClassName("tab-content");
     for (let i = 0; i < contents.length; i++) {
@@ -271,24 +369,21 @@ let images = [];
 let captions = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Lấy tất cả các item trong phần Products
     const mapItems = document.querySelectorAll('#products .map-item');
     
     mapItems.forEach((item, index) => {
         const img = item.querySelector('img');
         const caption = item.querySelector('strong').innerText;
         
-        // Lưu trữ đường dẫn ảnh và tiêu đề vào mảng
         images.push(img.src);
         captions.push(caption);
         
-        // Thêm sự kiện click cho từng ảnh
         img.addEventListener('click', () => {
             openLightbox(index);
         });
     });
 
-    // Cho phép dùng phím mũi tên và ESC để điều khiển
+    // Bàn phím điều khiển
     document.addEventListener('keydown', function(event) {
         const lightbox = document.getElementById('lightbox');
         if (lightbox.style.display === "block") {
@@ -298,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Bấm ra ngoài khoảng trống để đóng ảnh
+    // Click ra ngoài để đóng
     const lightbox = document.getElementById('lightbox');
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
@@ -320,7 +415,6 @@ function closeLightbox() {
 function changeImage(direction) {
     currentImageIndex += direction;
     
-    // Xử lý vòng lặp (Đang ở ảnh cuối bấm Next về ảnh đầu)
     if (currentImageIndex >= images.length) {
         currentImageIndex = 0;
     } else if (currentImageIndex < 0) {
@@ -341,11 +435,12 @@ function updateLightboxContent() {
 </head>
 
 <body>
-<a name="top"></a>
+<a id="top"></a>
 
 <header>
     <div class="avatar-container">
-        <img src="avatar.jpg" alt="Avatar">
+        <!-- Đảm bảo file avatar.jpg nằm cùng thư mục hoặc cập nhật lại đường dẫn -->
+        <img src="avatar.jpg" alt="Dũng Trần Avatar">
     </div>
     <div class="intro">
         <h1>Dũng Trần</h1>
@@ -357,35 +452,45 @@ function updateLightboxContent() {
     </div>
 </header>
 
-<div style="text-align:center;font-style:italic;margin-bottom:20px;">
+<div class="quote-text">
     “It's never too late to learn anything”
 </div>
 
 <!-- ===== TABS ===== -->
 <div class="tabs">
-    <button class="tab-button" onclick="openTab(event,'experience')">📘 Experience & Education</button>
-    <button class="tab-button" onclick="openTab(event,'publications')">📄 Publications</button>
-    <button class="tab-button" onclick="openTab(event,'products')">🗺️ Products</button>
-    <button class="tab-button" onclick="openTab(event,'webapp')">🌍 GEE Web App</button>
-    <button class="tab-button" onclick="openTab(event,'certificates')">📜 Certificates</button>
+    <button class="tab-button active" onclick="openTab(event,'experience')">
+        <i class="fa-solid fa-briefcase"></i> Experience & Education
+    </button>
+    <button class="tab-button" onclick="openTab(event,'publications')">
+        <i class="fa-solid fa-file-lines"></i> Publications
+    </button>
+    <button class="tab-button" onclick="openTab(event,'products')">
+        <i class="fa-solid fa-map-location-dot"></i> Products
+    </button>
+    <button class="tab-button" onclick="openTab(event,'webapp')">
+        <i class="fa-solid fa-earth-americas"></i> GEE Web App
+    </button>
+    <button class="tab-button" onclick="openTab(event,'certificates')">
+        <i class="fa-solid fa-certificate"></i> Certificates
+    </button>
 </div>
 
 <!-- ===== EXPERIENCE ===== -->
 <div id="experience" class="tab-content">
-    <div class="section-title">🧭 Work Experience</div>
+    <div class="section-title"><i class="fa-solid fa-compass"></i> Work Experience</div>
     <ul class="bullet-list">
-        <li>Office of Science and Technology – Dong Nai Technology University (Nov 2025 – Present)</li>
-        <li>HCMC Space Technology Application Center – Vietnam Space Center (May 2023 – Nov 2025)</li>
-        <li>Southern Marine Environmental & Resources Planning Center (Dec 2017 – Mar 2023)</li>
+        <li><strong>Office of Science and Technology – Dong Nai Technology University</strong> (Nov 2025 – Present)</li>
+        <li><strong>HCMC Space Technology Application Center – Vietnam Space Center</strong> (May 2023 – Nov 2025)</li>
+        <li><strong>Southern Marine Environmental & Resources Planning Center</strong> (Dec 2017 – Mar 2023)</li>
     </ul>
 
-    <div class="section-title">🎓 Education</div>
+    <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</div>
     <ul class="bullet-list">
-        <li>MSc in Cartography, Remote Sensing & GIS – HCMUT (2021–2025)</li>
-        <li>BSc in Oceanography, Meteorology & Hydrology – HCMUS (2011–2015)</li>
+        <li><strong>MSc in Cartography, Remote Sensing & GIS</strong> – HCMUT (2021–2025)</li>
+        <li><strong>BSc in Oceanography, Meteorology & Hydrology</strong> – HCMUS (2011–2015)</li>
     </ul>
 
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+    <div class="back-to-top"><a href="#top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a></div>
 </div>
 
 <!-- ===== PUBLICATIONS ===== -->
@@ -396,7 +501,7 @@ function updateLightboxContent() {
             1990–2024 in Thu Duc City of Ho Chi Minh City, Vietnam</em><br>
             <strong>International Journal of Geoinformatics</strong>, Vol.21(3), 2025.<br>
             <a href="https://doi.org/10.52939/ijg.v21i3.4003" target="_blank">
-                DOI: 10.52939/ijg.v21i3.4003
+                <i class="fa-solid fa-link"></i> DOI: 10.52939/ijg.v21i3.4003
             </a>
         </li>
 
@@ -406,54 +511,57 @@ function updateLightboxContent() {
         </li>
     </ul>
 
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+    <div class="back-to-top"><a href="#top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a></div>
 </div>
 
 <!-- ===== PRODUCTS ===== -->
 <div id="products" class="tab-content">
     <div class="map-grid">
-
-        <div class="map-item"><img src="vinhphuc_danso.jpg"><strong>Population Density – Vinh Phuc</strong></div>
-        <div class="map-item"><img src="vinhphucdiahinh.jpg"><strong>Elevation – Vinh Phuc</strong></div>
-        <div class="map-item"><img src="Gtbinhchuan.jpg"><strong>Transportation – Binh Chuan</strong></div>
-        <div class="map-item"><img src="tonghopbinhchuan.jpg"><strong>Integrated Map – Binh Chuan</strong></div>
-        <div class="map-item"><img src="45_2021_2040.jpg"><strong>Species Distribution 2021–2040</strong></div>
-        <div class="map-item"><img src="45_2041_2060.jpg"><strong>Species Distribution 2041–2060</strong></div>
-        <div class="map-item"><img src="taynguyemap.jpg"><strong>Central Highlands Map</strong></div>
-        <div class="map-item"><img src="TAYNGUYEN.gif"><strong>TVDI Drought – Central Highlands</strong></div>
-        <div class="map-item"><img src="Srilanka_4.png"><strong>Travel Map – Sri Lanka (1)</strong></div>
-        <div class="map-item"><img src="Srilanka_11.png"><strong>Travel Map – Sri Lanka (2)</strong></div>
-        <div class="map-item"><img src="pm25_9h.png"><strong>PM2.5 – Oregon 09h, 15/07/2025</strong></div>
-        <div class="map-item"><img src="pm25_21h.png"><strong>PM2.5 – Oregon 21h, 15/07/2025</strong></div>
-
+        <div class="map-item"><img src="vinhphuc_danso.jpg" loading="lazy" alt="Population Density - Vinh Phuc"><strong>Population Density – Vinh Phuc</strong></div>
+        <div class="map-item"><img src="vinhphucdiahinh.jpg" loading="lazy" alt="Elevation - Vinh Phuc"><strong>Elevation – Vinh Phuc</strong></div>
+        <div class="map-item"><img src="Gtbinhchuan.jpg" loading="lazy" alt="Transportation - Binh Chuan"><strong>Transportation – Binh Chuan</strong></div>
+        <div class="map-item"><img src="tonghopbinhchuan.jpg" loading="lazy" alt="Integrated Map - Binh Chuan"><strong>Integrated Map – Binh Chuan</strong></div>
+        <div class="map-item"><img src="45_2021_2040.jpg" loading="lazy" alt="Species Distribution 2021-2040"><strong>Species Distribution 2021–2040</strong></div>
+        <div class="map-item"><img src="45_2041_2060.jpg" loading="lazy" alt="Species Distribution 2041-2060"><strong>Species Distribution 2041–2060</strong></div>
+        <div class="map-item"><img src="taynguyemap.jpg" loading="lazy" alt="Central Highlands Map"><strong>Central Highlands Map</strong></div>
+        <div class="map-item"><img src="TAYNGUYEN.gif" loading="lazy" alt="TVDI Drought - Central Highlands"><strong>TVDI Drought – Central Highlands</strong></div>
+        <div class="map-item"><img src="Srilanka_4.png" loading="lazy" alt="Travel Map - Sri Lanka (1)"><strong>Travel Map – Sri Lanka (1)</strong></div>
+        <div class="map-item"><img src="Srilanka_11.png" loading="lazy" alt="Travel Map - Sri Lanka (2)"><strong>Travel Map – Sri Lanka (2)</strong></div>
+        <div class="map-item"><img src="pm25_9h.png" loading="lazy" alt="PM2.5 - Oregon 09h"><strong>PM2.5 – Oregon 09h, 15/07/2025</strong></div>
+        <div class="map-item"><img src="pm25_21h.png" loading="lazy" alt="PM2.5 - Oregon 21h"><strong>PM2.5 – Oregon 21h, 15/07/2025</strong></div>
     </div>
 
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+    <div class="back-to-top"><a href="#top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a></div>
 </div>
 
 <!-- ===== WEB APP ===== -->
 <div id="webapp" class="tab-content">
-    <div class="map-item">
-        <img src="appdemo.png">
-        <p>
-            <a href="https://ee-dunglovegeee.projects.earthengine.app/view/coastlineextractorlandsat"
-               target="_blank">🚀 Open GEE App</a>
+    <div class="map-item" style="max-width: 600px; margin: 0 auto;">
+        <img src="appdemo.png" alt="GEE Web App Demo">
+        <p style="margin-top: 15px;">
+            <a href="https://ee-dunglovegeee.projects.earthengine.app/view/coastlineextractorlandsat" target="_blank" style="text-decoration: none; background: var(--accent-green); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; display: inline-block;">
+                <i class="fa-solid fa-rocket"></i> Open GEE App
+            </a>
         </p>
     </div>
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+    <div class="back-to-top"><a href="#top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a></div>
 </div>
 
 <!-- ===== CERTIFICATES ===== -->
 <div id="certificates" class="tab-content">
-    <iframe src="chung.pdf#toolbar=0" width="100%" height="800"></iframe>
-    <div class="back-to-top"><a href="#top">↑ Back to Top</a></div>
+    <div style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+        <iframe src="chung.pdf#toolbar=0" width="100%" height="800" style="border: none;"></iframe>
+    </div>
+    <div class="back-to-top"><a href="#top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a></div>
 </div>
 
 <footer>
-    © 2026 Dũng Trần | GIS Portfolio
-    <div class="counter-container">
-        <p><b>Visitor</b>s</p>
-        <a href="https://www.freecounterstat.com" title="website counter"><img src="https://counter11.optistats.ovh/private/freecounterstat.php?c=zu9n24jttrk677ydm3rrj7frwrkr3pug" border="0" title="website counter" alt="website counter"></a>
+    <p>© 2026 Dũng Trần | GIS Portfolio</p>
+    <div class="counter-container" style="margin-top: 15px;">
+        <p style="margin-bottom: 5px;"><b>Visitors</b></p>
+        <a href="https://www.freecounterstat.com" title="website counter">
+            <img src="https://counter11.optistats.ovh/private/freecounterstat.php?c=zu9n24jttrk677ydm3rrj7frwrkr3pug" border="0" title="website counter" alt="website counter">
+        </a>
     </div>
 </footer>
 
@@ -462,7 +570,7 @@ function updateLightboxContent() {
     <span class="close-btn" onclick="closeLightbox()">&times;</span>
     <span class="prev-btn" onclick="changeImage(-1)">&#10094;</span>
     <div class="lightbox-content-wrapper">
-        <img class="lightbox-content" id="lightbox-img">
+        <img class="lightbox-content" id="lightbox-img" alt="Enlarged map">
         <div id="lightbox-caption"></div>
     </div>
     <span class="next-btn" onclick="changeImage(1)">&#10095;</span>
