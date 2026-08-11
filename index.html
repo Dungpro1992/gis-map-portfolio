@@ -152,6 +152,97 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== LIGHTBOX (PHÓNG TO ẢNH & CHUYỂN ẢNH) ===== */
+.map-item img {
+    cursor: pointer; 
+    transition: transform 0.2s;
+}
+
+.map-item img:hover {
+    transform: scale(1.03); 
+}
+
+.lightbox {
+    display: none; 
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-content-wrapper {
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    width: 90%;
+}
+
+.lightbox-content {
+    max-width: 100%;
+    max-height: 90%;
+    border-radius: 8px;
+    object-fit: contain;
+    animation: fadeIn 0.3s;
+}
+
+#lightbox-caption {
+    color: white;
+    font-size: 1.2em;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.prev-btn, .next-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.3s;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    z-index: 10000;
+}
+
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+.prev-btn:hover, .next-btn:hover, .close-btn:hover {
+    color: #fff;
+    background-color: rgba(0,0,0,0.8);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0.5; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
 </style>
 
 <script>
@@ -173,6 +264,79 @@ function openTab(evt, tabName) {
 window.onload = function () {
     document.getElementsByClassName("tab-button")[0].click();
 };
+
+// --- LIGHTBOX LOGIC ---
+let currentImageIndex = 0;
+let images = [];
+let captions = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Lấy tất cả các item trong phần Products
+    const mapItems = document.querySelectorAll('#products .map-item');
+    
+    mapItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        const caption = item.querySelector('strong').innerText;
+        
+        // Lưu trữ đường dẫn ảnh và tiêu đề vào mảng
+        images.push(img.src);
+        captions.push(caption);
+        
+        // Thêm sự kiện click cho từng ảnh
+        img.addEventListener('click', () => {
+            openLightbox(index);
+        });
+    });
+
+    // Cho phép dùng phím mũi tên và ESC để điều khiển
+    document.addEventListener('keydown', function(event) {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox.style.display === "block") {
+            if (event.key === "Escape") closeLightbox();
+            if (event.key === "ArrowLeft") changeImage(-1);
+            if (event.key === "ArrowRight") changeImage(1);
+        }
+    });
+
+    // Bấm ra ngoài khoảng trống để đóng ảnh
+    const lightbox = document.getElementById('lightbox');
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-content-wrapper')) {
+            closeLightbox();
+        }
+    });
+});
+
+function openLightbox(index) {
+    currentImageIndex = index;
+    document.getElementById('lightbox').style.display = 'block';
+    updateLightboxContent();
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+function changeImage(direction) {
+    currentImageIndex += direction;
+    
+    // Xử lý vòng lặp (Đang ở ảnh cuối bấm Next về ảnh đầu)
+    if (currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1;
+    }
+    
+    updateLightboxContent();
+}
+
+function updateLightboxContent() {
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    
+    lightboxImg.src = images[currentImageIndex];
+    lightboxCaption.innerText = captions[currentImageIndex];
+}
 </script>
 </head>
 
@@ -292,6 +456,17 @@ window.onload = function () {
         <a href="https://www.freecounterstat.com" title="website counter"><img src="https://counter11.optistats.ovh/private/freecounterstat.php?c=zu9n24jttrk677ydm3rrj7frwrkr3pug" border="0" title="website counter" alt="website counter"></a>
     </div>
 </footer>
+
+<!-- ===== LIGHTBOX MODAL ===== -->
+<div id="lightbox" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <span class="prev-btn" onclick="changeImage(-1)">&#10094;</span>
+    <div class="lightbox-content-wrapper">
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption"></div>
+    </div>
+    <span class="next-btn" onclick="changeImage(1)">&#10095;</span>
+</div>
 
 </body>
 </html>
